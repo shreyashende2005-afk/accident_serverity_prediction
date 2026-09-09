@@ -247,13 +247,13 @@ An interactive Streamlit application was developed for real-time accident severi
 
 ## 🏠 Home Page
 
-![Home Page](screenshots/home2.png)
+![Home Page](screenshots/home2.PNG)
 
 ---
 
 ## 📊 Prediction Result
 
-![Prediction Result](screenshots/pre.png)
+![Prediction Result](screenshots/pre.PNG)
 
 ---
 
