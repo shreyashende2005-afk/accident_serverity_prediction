@@ -1,7 +1,19 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import sys
+import sklearn
 
+
+st.write("Python version:", sys.version)
+st.write("Scikit-learn version:", sklearn.__version__)
+
+model_path = "accident_severity_pipeline.pkl"
+
+loaded_model = joblib.load(model_path)
+
+st.write("Model loaded successfully")
+st.write(type(loaded_model))
 # ==========================================
 # Page Config
 # ==========================================
