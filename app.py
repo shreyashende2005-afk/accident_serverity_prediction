@@ -1,23 +1,11 @@
-import sklearn
-import sys
 import joblib
 import streamlit as st
 import pandas as pd
+from pathlib import Path
 
-
-st.write("Python version:", sys.version)
-st.write("Scikit-learn version:", sklearn.__version__)
-
-model_path = "accident_severity_pipeline.pkl"
-
-loaded_model = joblib.load(model_path)
-
-st.write("Model loaded successfully")
-st.write(type(loaded_model))
 # ==========================================
-# Page Config
+# Page Config (must be the first Streamlit command)
 # ==========================================
-
 st.set_page_config(
     page_title="Accident Severity Prediction",
     page_icon="🚗",
@@ -203,10 +191,21 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ==========================================
-# Load Model
+# Load Model (load only once)
 # ==========================================
 
-model = joblib.load("accident_severity_pipeline.pkl")
+model_path = Path(__file__).resolve().parent / "accident_severity_pipeline.pkl"
+try:
+    model = joblib.load(model_path)
+except Exception as exc:
+    st.error(
+        "Could not load the saved model. This is usually caused by a "
+        "scikit-learn version mismatch. The model was trained with "
+        "scikit-learn 1.5.2. Install the versions listed in requirements.txt, "
+        "then redeploy the app. "
+        f"Technical details: {exc}"
+    )
+    st.stop()
 
 # ==========================================
 # Header
